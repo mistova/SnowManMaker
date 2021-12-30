@@ -17,8 +17,12 @@ public class MovementController : MonoBehaviour
 
     Vector2 speedMultiplier;
 
+    SnowBallManager sbManager;
+
     private void Start()
     {
+        sbManager = GetComponent<SnowBallManager>();
+
         screenWidth = Screen.width;
 
         speedMultiplier = Vector2.one;
@@ -83,7 +87,9 @@ public class MovementController : MonoBehaviour
 
         displacement.y = 0;
 
-        transform.position += displacement * Time.deltaTime;
+        displacement *= Time.deltaTime;
+
+        transform.position += displacement;
     }
 
     private void MouseInput(ref Vector3 displacement)
